@@ -5,7 +5,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <%if user_signed_in?%>
-            <p>0 de <%= current_user.actions.count.to_i%> completadas</p>
+            <p><%= current_user.actions.count {|i| i.finish == true}
+            %> de <%= current_user.actions.count.to_i%> tareas completadas</p>
           <%end%>
           <ul class="navbar-nav ml-auto">
             <%if user_signed_in?%>
