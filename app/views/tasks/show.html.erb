@@ -1,0 +1,31 @@
+<section class = 'container'>
+    <div class = 'mb-5'>
+        <h1>Tarea: <%= @task.name%></h1>
+    </div>
+    <div class = 'row'>
+        <div class = 'col-md-6'>
+            <h2>Ultimos 5 usuarios en terminarla</h2>
+            <ul>
+                <% @ultimos.each do |ultimo| %>
+                    <% if ultimo.finish == true %>
+                        <li>
+                            <%= ultimo.user.name %>
+                        </li>
+                    <%end%>
+                <%end%>
+            </ul>
+        </div>
+        <div class = 'col-md-6'>
+            <h2>Usuarios que han completado la tarea</h2>
+            <ul>
+                <% @usuarios.each do |usuario| %>
+                    <% if usuario.finish == true %>
+                        <li>
+                            <%= usuario.user.name %>
+                        </li>
+                    <%end%>
+                <%end%>
+            </ul>
+        </div>
+    </div>
+</section>

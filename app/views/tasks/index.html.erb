@@ -1,0 +1,40 @@
+<% if signed_in? %>
+    <div class="container">
+        <div class="row">
+            <% @todos.each do |todo|%>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <%= image_tag todo.task.photo, class: 'car-img-top'%>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= todo.task.name %></h5>
+                            <p class="card-text"><%= todo.task.description %></p>
+                            <%= link_to 'Entrar', task_path(todo.task.id), class: 'btn btn-primary'%>
+                            <%if todo.finish == false %>
+                                <%= link_to 'Completar', task_action_path(todo.id, todo.task.id), method: :put, class: 'btn btn-success'%>
+                            <%else%>
+                                <%= link_to 'Finalizada', task_action_path(todo.id, todo.task.id), method: :put, class: 'btn btn-danger'%>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+<% else %>
+<div class="container">
+        <div class="row">
+            <% @tasks.each do |task|%>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <%= image_tag task.photo, class: 'car-img-top'%>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= task.name %></h5>
+                            <p class="card-text"><%= task.description %></p>
+                            <%= link_to 'Completar', task_action_path(task.id, task.id) , method: :put%>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+<%end%>
